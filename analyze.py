@@ -3,7 +3,7 @@ import pandas as pd
 df = pd.read_csv("data/commute_data.csv")
 
 # Convert to minutes
-df["minutes"] = df["duration_seconds"] / 60
+df["minutes"] = df["duration_minutes"]
 
 # -----------------------------------
 # AVERAGE COMMUTE PER CITY

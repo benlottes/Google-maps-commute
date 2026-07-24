@@ -135,7 +135,7 @@ def log_row(row):
 # -----------------------------------
 
 def morning_commute():
-	print(f"\n🌅 Morning run: {datetime.now()}")
+	print(f"\n Morning run: {datetime.now()}")
 
 	for city in CITIES:
 		for work in WORK_LOCATIONS:
@@ -147,21 +147,19 @@ def morning_commute():
 						datetime.now().astimezone(ZoneInfo("America/Los_Angeles")).isoformat(),
 						"Lizzy" if work == "San Francisco, CA" else "Ben",
 						"to_work",
-						work,
 						city,
+						work,
 						methodOfTravel,
 						duration
 					]
 
 					log_row(row)
 
-			if city != work:
+			if city != work and not (city == "San Jose, CA" and work == "Milpitas, CA"):
 				log_duration("DRIVE")
-				if work == "San Francisco, CA":
-					log_duration("TRANSIT")
 
 def evening_commute():
-	print(f"\n🌆 Evening run: {datetime.now()}")
+	print(f"\n Evening run: {datetime.now()}")
 
 	for city in CITIES:
 		for work in WORK_LOCATIONS:
@@ -181,10 +179,8 @@ def evening_commute():
 
 					log_row(row)
 
-			if city != work:
+			if city != work and not (city == "San Jose, CA" and work == "Milpitas, CA"):
 				log_duration("DRIVE")
-				if work == "San Francisco, CA":
-					log_duration("TRANSIT")
 			
 
 # -----------------------------------
@@ -207,7 +203,7 @@ schedule.every().day.at("21:00").do(evening_commute)
 # -----------------------------------
 
 if __name__ == "__main__":
-	print("🚗 Commute tracker running...")
+	print("Commute tracker running...")
 
 	morning_commute()
 
